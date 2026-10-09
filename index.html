@@ -19,21 +19,53 @@
     font-size: 17px;
     line-height: 1.7;
   }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 72px 24px 96px; }
-  h1, h2, h3 { font-size: 1rem; font-weight: normal; margin: 0; }
-  h1 { font-size: 1.5rem; line-height: 1.3; }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 72px 24px 96px; }
+  h1, h2, h3 { font-weight: bold; margin: 0; line-height: 1.3; }
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.25rem; margin: 56px 0 24px; }
+  h3 { font-size: 1.25rem; margin: 48px 0 24px; }
+  section > h2:first-child { margin-top: 0; }
   .role { color: var(--muted); margin: 4px 0 0; }
   nav { display: flex; flex-wrap: wrap; gap: 24px; margin: 32px 0 64px; }
   nav a { color: var(--muted); text-decoration: none; }
   nav a:hover, nav a.current { color: var(--text); }
   a { color: inherit; text-decoration-color: var(--muted); text-underline-offset: 3px; }
-  h2 { color: var(--muted); margin: 56px 0 20px; }
-  section > h2:first-child { margin-top: 0; }
-  h3 { color: var(--muted); margin: 40px 0 12px; }
   p { margin: 0 0 20px; }
-  ul { list-style: none; padding: 0; margin: 0 0 20px; }
-  li { margin-bottom: 10px; }
+  ul { list-style: none; padding: 0; margin: 0; }
   .muted { color: var(--muted); }
+
+  /* Lists: a quiet left column for dates, content on the right */
+  .rows > li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    column-gap: 20px;
+    margin-bottom: 22px;
+  }
+  .rows.wide > li { grid-template-columns: 7.5rem 1fr; margin-bottom: 14px; }
+  .rows .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .rows .title { display: block; text-decoration: none; }
+  a.title:hover { text-decoration: underline; text-decoration-color: var(--muted); }
+  .rows .meta { display: block; color: var(--muted); }
+  @media (max-width: 520px) {
+    .rows > li, .rows.wide > li { grid-template-columns: 1fr; }
+  }
+
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+  .head h2 { margin: 0; }
+  .order { display: none; gap: 20px; }
+  .js .order { display: flex; }
+  .order button {
+    font: inherit; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  .order button:hover, .order button.current { color: var(--text); }
+  .order button.current { text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: 3px; }
+
+  .contact li { margin-bottom: 16px; }
+  .contact a { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; }
+  .contact a:hover span { text-decoration: underline; text-decoration-color: var(--muted); }
+  .contact svg { width: 20px; height: 20px; fill: var(--muted); flex: none; }
+  .contact a:hover svg { fill: var(--text); }
+
   .js section { display: none; }
   .js section.current { display: block; }
 </style>
@@ -50,7 +82,6 @@
     <a href="#about">About</a>
     <a href="#research">Research</a>
     <a href="#teaching">Teaching</a>
-    <a href="#cv">CV</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -70,159 +101,156 @@
     </p>
 
     <h2>Selected publications</h2>
-
-    <p>Abeles, M. and Alvarez, V. (2026).
-      <a href="https://www.networkideas.org/wp-content/uploads/2026/06/Working-Paper_IMF-lending-tollkit-in-historical-perspective.pdf">“The IMF’s lending toolkit in historical perspective”</a>.
-      <span class="muted">IDEAs Working Papers, International Development Economics Associates.</span></p>
-
-    <p>Álvarez, V., Campana, J. M., Malvicino, F. E., Wahren, P. and Wasserman, M. (2025).
-      <a href="http://www.olafinanciera.unam.mx/new_web/51/index.html">“Inflación y balance de pagos durante el gobierno de Milei. Una mirada crítica del discurso oficial”</a>.
-      <span class="muted">Ola Financiera, 51, México.</span></p>
-
-    <p>Amar, A. and Álvarez, V. (2025).
-      <a href="https://hdl.handle.net/11362/83912">“Oportunidades de diversificación exportadora en el MERCOSUR: un abordaje desde el Espacio de Producto”</a>.
-      <span class="muted">Serie Estudios y Perspectivas (LC/BUE/TS.2025/3), CEPAL, Santiago.</span></p>
+    <ul class="rows">
+      <li><span class="when">2026</span><div>
+        <a class="title" href="https://www.networkideas.org/wp-content/uploads/2026/06/Working-Paper_IMF-lending-tollkit-in-historical-perspective.pdf">The IMF’s lending toolkit in historical perspective</a>
+        <span class="meta">With M. Abeles. IDEAs Working Papers, International Development Economics Associates.</span></div></li>
+      <li><span class="when">2025</span><div>
+        <a class="title" href="http://www.olafinanciera.unam.mx/new_web/51/index.html">Inflación y balance de pagos durante el gobierno de Milei. Una mirada crítica del discurso oficial</a>
+        <span class="meta">With J. M. Campana, F. E. Malvicino, P. Wahren and M. Wasserman. Ola Financiera, 51, México.</span></div></li>
+      <li><span class="when">2025</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/83912">Oportunidades de diversificación exportadora en el MERCOSUR: un abordaje desde el Espacio de Producto</a>
+        <span class="meta">With A. Amar. Serie Estudios y Perspectivas (LC/BUE/TS.2025/3), CEPAL, Santiago.</span></div></li>
+    </ul>
   </section>
 
   <section id="research">
-    <h2>Publications</h2>
+    <div class="head">
+      <h2>Publications</h2>
+      <div class="order">
+        <button type="button" data-mode="chrono" class="current">Chronological</button>
+        <button type="button" data-mode="topic">By topic</button>
+      </div>
+    </div>
 
-    <p>Abeles, M. and Alvarez, V. (2026).
-      <a href="https://www.networkideas.org/wp-content/uploads/2026/06/Working-Paper_IMF-lending-tollkit-in-historical-perspective.pdf">“The IMF’s lending toolkit in historical perspective”</a>.
-      <span class="muted">IDEAs Working Papers, International Development Economics Associates.</span></p>
+    <div id="pubs">
+    <ul class="rows">
+      <li data-topic="macro"><span class="when">2026</span><div>
+        <a class="title" href="https://www.networkideas.org/wp-content/uploads/2026/06/Working-Paper_IMF-lending-tollkit-in-historical-perspective.pdf">The IMF’s lending toolkit in historical perspective</a>
+        <span class="meta">With M. Abeles. IDEAs Working Papers, International Development Economics Associates.</span></div></li>
 
-    <p>Amar, A. and Álvarez, V. (2025).
-      <a href="https://hdl.handle.net/11362/83912">“Oportunidades de diversificación exportadora en el MERCOSUR: un abordaje desde el Espacio de Producto”</a>.
-      <span class="muted">Serie Estudios y Perspectivas (LC/BUE/TS.2025/3), CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2025</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/83912">Oportunidades de diversificación exportadora en el MERCOSUR: un abordaje desde el Espacio de Producto</a>
+        <span class="meta">With A. Amar. Serie Estudios y Perspectivas (LC/BUE/TS.2025/3), CEPAL, Santiago.</span></div></li>
 
-    <p>CEPAL (2025).
-      <a href="https://hdl.handle.net/11362/82261">“Boletín de Comercio Exterior del MERCOSUR N°8. La inserción externa del MERCOSUR frente a un cambio de paradigma en el comercio internacional”</a>.
-      <span class="muted">ECLAC report.</span></p>
+      <li data-topic="dev"><span class="when">2025</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/82261">Boletín de Comercio Exterior del MERCOSUR N°8. La inserción externa del MERCOSUR frente a un cambio de paradigma en el comercio internacional</a>
+        <span class="meta">ECLAC report, CEPAL.</span></div></li>
 
-    <p>Álvarez, V., Campana, J. M., Malvicino, F. E., Wahren, P. and Wasserman, M. (2025).
-      <a href="http://www.olafinanciera.unam.mx/new_web/51/index.html">“Inflación y balance de pagos durante el gobierno de Milei. Una mirada crítica del discurso oficial”</a>.
-      <span class="muted">Ola Financiera, 51, México.</span></p>
+      <li data-topic="macro"><span class="when">2025</span><div>
+        <a class="title" href="http://www.olafinanciera.unam.mx/new_web/51/index.html">Inflación y balance de pagos durante el gobierno de Milei. Una mirada crítica del discurso oficial</a>
+        <span class="meta">With J. M. Campana, F. E. Malvicino, P. Wahren and M. Wasserman. Ola Financiera, 51, México.</span></div></li>
 
-    <p>Álvarez, V., Monza, M. and Torres, V. (2025).
-      <a href="https://www.sociedadeconomiacritica.org/wp-content/uploads/2025/07/Actas-JECF-2024.pdf">“Milei, ¿el heterodoxo?”</a>.
-      <span class="muted">Jornadas de Economía Crítica y Feminista 2024, Buenos Aires. ISSN 2525-1449.</span></p>
+      <li data-topic="macro"><span class="when">2025</span><div>
+        <a class="title" href="https://www.sociedadeconomiacritica.org/wp-content/uploads/2025/07/Actas-JECF-2024.pdf">Milei, ¿el heterodoxo?</a>
+        <span class="meta">With M. Monza and V. Torres. Jornadas de Economía Crítica y Feminista 2024, Buenos Aires.</span></div></li>
 
-    <p>Amar, A., Álvarez, V. and Abeles, M. (2024).
-      <a href="https://hdl.handle.net/11362/81148">“Explotación del litio en la Argentina: debates sobre el desarrollo productivo, social y ambiental presente y futuro del sector”</a>.
-      <span class="muted">Serie Estudios y Perspectivas, Oficina de la CEPAL en la Argentina, N° 57, CEPAL.</span></p>
+      <li data-topic="dev"><span class="when">2024</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/81148">Explotación del litio en la Argentina: debates sobre el desarrollo productivo, social y ambiental presente y futuro del sector</a>
+        <span class="meta">With A. Amar and M. Abeles. Serie Estudios y Perspectivas, Oficina de la CEPAL en la Argentina, N° 57.</span></div></li>
 
-    <p>Alvarez, V. (2024).
-      <a href="https://ri.unsam.edu.ar/handle/123456789/2941">“La economía también tiene memoria. Los impactos de la última dictadura militar argentina en el crecimiento económico”</a>.
-      <span class="muted">Master’s thesis, Maestría en Desarrollo Económico, Escuela IDAES, Universidad Nacional de San Martín.</span>
-      <a href="https://drive.google.com/file/d/13Gl8t0gd1ylziPUpnDDf7xZn5KaL7ZPR/view?usp=sharing">Full English version</a>,
-      <a href="https://drive.google.com/file/d/13kitnId37qdGNajHcgo8iWlQsXbUmvvm/view?usp=sharing">summary</a>.</p>
+      <li data-topic="macro"><span class="when">2024</span><div>
+        <a class="title" href="https://ri.unsam.edu.ar/handle/123456789/2941">La economía también tiene memoria. Los impactos de la última dictadura militar argentina en el crecimiento económico</a>
+        <span class="meta">Master’s thesis, Escuela IDAES, Universidad Nacional de San Martín.
+          <a href="https://drive.google.com/file/d/13Gl8t0gd1ylziPUpnDDf7xZn5KaL7ZPR/view?usp=sharing">English version</a>,
+          <a href="https://drive.google.com/file/d/13kitnId37qdGNajHcgo8iWlQsXbUmvvm/view?usp=sharing">summary</a>.</span></div></li>
 
-    <p>Pascuini, P. and Álvarez, V. (2024).
-      <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9675349">“Desarrollo e institucionalidad de las telecomunicaciones satelitales en Argentina”</a>.
-      <span class="muted">H-industri@, Revista de historia de la industria y el desarrollo en América Latina, 34(18).</span></p>
+      <li data-topic="dev"><span class="when">2024</span><div>
+        <a class="title" href="https://dialnet.unirioja.es/servlet/articulo?codigo=9675349">Desarrollo e institucionalidad de las telecomunicaciones satelitales en Argentina</a>
+        <span class="meta">With P. Pascuini. H-industri@, Revista de historia de la industria y el desarrollo en América Latina, 34(18).</span></div></li>
 
-    <p>Equipo de trabajo de la Oficina de la CEPAL en la Argentina, Secretaría de Industria y Desarrollo Productivo de la Argentina and Ministerio de Producción, Ciencia y Tecnología de la provincia de Santa Fe (2024).
-      <a href="https://hdl.handle.net/11362/69016">“Capacidades productivas y tecnológicas en la provincia de Santa Fe: desafíos y oportunidades para su fortalecimiento productivo”</a>.
-      <span class="muted">Documentos de Proyectos, CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2024</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/69016">Capacidades productivas y tecnológicas en la provincia de Santa Fe: desafíos y oportunidades para su fortalecimiento productivo</a>
+        <span class="meta">With the ECLAC Office in Argentina, the Secretaría de Industria y Desarrollo Productivo and the Ministerio de Producción, Ciencia y Tecnología de Santa Fe. Documentos de Proyectos, CEPAL, Santiago.</span></div></li>
 
-    <p>Amar, A. and Álvarez, V. (2023).
-      <a href="https://hdl.handle.net/11362/69007">“Las brechas estructurales de desarrollo en la provincia del Chaco: actualización y revisión”</a>.
-      <span class="muted">Documentos de Proyectos, CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2023</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/69007">Las brechas estructurales de desarrollo en la provincia del Chaco: actualización y revisión</a>
+        <span class="meta">With A. Amar. Documentos de Proyectos, CEPAL, Santiago.</span></div></li>
 
-    <p>García Díaz, F. and Álvarez, V. (2023).
-      <a href="https://hdl.handle.net/11362/48765">“El desafío exportador de la Argentina: exploración del potencial a corto y mediano plazo”</a>.
-      <span class="muted">Documentos de Proyectos, CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2023</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/48765">El desafío exportador de la Argentina: exploración del potencial a corto y mediano plazo</a>
+        <span class="meta">With F. García Díaz. Documentos de Proyectos, CEPAL, Santiago.</span></div></li>
 
-    <p>García Díaz, F. and Álvarez, V. (2023).
-      <a href="https://hdl.handle.net/11362/48719">“El desafío exportador de la Argentina: evaluación del desempeño en el período 2011-2019”</a>.
-      <span class="muted">Documentos de Proyectos, CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2023</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/48719">El desafío exportador de la Argentina: evaluación del desempeño en el período 2011-2019</a>
+        <span class="meta">With F. García Díaz. Documentos de Proyectos, CEPAL, Santiago.</span></div></li>
 
-    <p>García Díaz, F., Vega, D. and Álvarez, V. (2023).
-      <a href="https://hdl.handle.net/11362/48726">“La distribución geográfica del valor agregado bruto de la Argentina entre 2004 y 2021”</a>.
-      <span class="muted">Serie Estudios y Perspectivas, Oficina de la CEPAL en la Argentina, N° 56, CEPAL, Santiago.</span></p>
+      <li data-topic="dev"><span class="when">2023</span><div>
+        <a class="title" href="https://hdl.handle.net/11362/48726">La distribución geográfica del valor agregado bruto de la Argentina entre 2004 y 2021</a>
+        <span class="meta">With F. García Díaz and D. Vega. Serie Estudios y Perspectivas, Oficina de la CEPAL en la Argentina, N° 56.</span></div></li>
 
-    <p>Montes-Rojas, G. and Álvarez, V. (2022).
-      “Los límites de la causalidad en la pandemia”.
-      <span class="muted">In V. Semeshenko and P. Mira, Epistemología en tiempos de COVID-19. Documentos de trabajo del CIECE 19. ISSN 1851-0922.</span></p>
+      <li data-topic="macro"><span class="when">2022</span><div>
+        <span class="title">Los límites de la causalidad en la pandemia</span>
+        <span class="meta">With G. Montes-Rojas. In V. Semeshenko and P. Mira, Epistemología en tiempos de COVID-19. Documentos de trabajo del CIECE 19.</span></div></li>
 
-    <p>Álvarez, V. (2021).
-      <a href="https://publicaciones.sociales.uba.ar/index.php/argumentos/article/view/6986">“Sistema institucional del sector espacial: una comparación entre Argentina, India e Israel”</a>.
-      <span class="muted">Argumentos. Revista de crítica social, Instituto de Investigaciones Gino Germani.</span></p>
+      <li data-topic="dev"><span class="when">2021</span><div>
+        <a class="title" href="https://publicaciones.sociales.uba.ar/index.php/argumentos/article/view/6986">Sistema institucional del sector espacial: una comparación entre Argentina, India e Israel</a>
+        <span class="meta">Argumentos. Revista de crítica social, Instituto de Investigaciones Gino Germani.</span></div></li>
 
-    <p>López, A., Pascuini, P. and Álvarez, V. (2021).
-      <a href="https://www.argentina.gob.ar/sites/default/files/2021/03/dt_8_-_sector_espacial_argentino_1.pdf">“Integración local y derrames tecnológicos en el sector espacial: situación y potencialidades”</a>.
-      <span class="muted">Documentos de Trabajo del CCE Nro. 8, Consejo para el Cambio Estructural, Ministerio de Desarrollo Productivo de la Nación.</span></p>
+      <li data-topic="dev"><span class="when">2021</span><div>
+        <a class="title" href="https://www.argentina.gob.ar/sites/default/files/2021/03/dt_8_-_sector_espacial_argentino_1.pdf">Integración local y derrames tecnológicos en el sector espacial: situación y potencialidades</a>
+        <span class="meta">With A. López and P. Pascuini. Documentos de Trabajo del CCE Nro. 8, Ministerio de Desarrollo Productivo de la Nación.</span></div></li>
+    </ul>
+    </div>
   </section>
 
   <section id="teaching">
-    <h2>University of Buenos Aires, Faculty of Economic Sciences</h2>
-    <ul>
-      <li>Microeconomics I (intermediate), Prof. Ariel Dvoskin <span class="muted">2022–present</span></li>
-      <li>Macroeconomics II (advanced), Prof. Guido Zack <span class="muted">2024–2025</span></li>
-      <li>Microeconomics II (advanced), Prof. Paulo Pascuini <span class="muted">2021–2025</span></li>
-      <li>Statistics I (introductory), Prof. Gerardo Rovner <span class="muted">2018–2024</span></li>
-      <li>Microeconomics I (intermediate), Prof. Paulo Pascuini <span class="muted">2018–2021</span></li>
-      <li>Calculus II (intermediate), Prof. Carlos Hernández <span class="muted">2018–2020</span></li>
+    <h2>University of Buenos Aires</h2>
+    <ul class="rows wide">
+      <li><span class="when">2022–present</span><div><span class="title">Microeconomics I</span><span class="meta">Intermediate. Prof. Ariel Dvoskin</span></div></li>
+      <li><span class="when">2024–2025</span><div><span class="title">Macroeconomics II</span><span class="meta">Advanced. Prof. Guido Zack</span></div></li>
+      <li><span class="when">2021–2025</span><div><span class="title">Microeconomics II</span><span class="meta">Advanced. Prof. Paulo Pascuini</span></div></li>
+      <li><span class="when">2018–2024</span><div><span class="title">Statistics I</span><span class="meta">Introductory. Prof. Gerardo Rovner</span></div></li>
+      <li><span class="when">2018–2021</span><div><span class="title">Microeconomics I</span><span class="meta">Intermediate. Prof. Paulo Pascuini</span></div></li>
+      <li><span class="when">2018–2020</span><div><span class="title">Calculus II</span><span class="meta">Intermediate. Prof. Carlos Hernández</span></div></li>
     </ul>
-    <p class="muted">Theoretical and applied lectures, coordination of teaching assistants,
-    selection and preparation of teaching materials, and design and grading of written
-    and oral exams.</p>
+    <p class="muted" style="margin-top: 24px">Faculty of Economic Sciences. Theoretical and applied
+    lectures, coordination of teaching assistants, preparation of teaching materials,
+    and design and grading of written and oral exams.</p>
 
-    <h2>ECLAC Office in Argentina, courses for public servants</h2>
-    <ul>
-      <li>Tools for Time Series Analysis with R <span class="muted">2021–present</span></li>
-      <li>Statistical Analysis of Administrative Data with R <span class="muted">2024–2025</span></li>
-    </ul>
-
-    <h2>National University of San Martín, IDAES School</h2>
-    <ul>
-      <li>Introduction to Data Modelling, Diploma in Computational Social Science and Digital Humanities <span class="muted">2024–2025</span></li>
-      <li>Guest class on the product space, economic complexity and trade, International Trade, Master’s in Economic Development <span class="muted">2024–present</span></li>
-    </ul>
-  </section>
-
-  <section id="cv">
-    <h2>Education</h2>
-    <ul>
-      <li>PhD in Economics, University of Siena <span class="muted">2025–present</span></li>
-      <li>Master’s in Economic Development, National University of San Martín (EIDAES-UNSAM). Orientation: Macroeconomics and Development Financing <span class="muted">2021–2022</span></li>
-      <li>Licentiate in Economics, University of Buenos Aires. Magna cum laude and honors diploma <span class="muted">2016–2020</span></li>
-      <li>Dual vocational training (German “Ausbildung” model) in Industrial Administration, Berufsbildungszentrum of the German-Argentine Chamber of Industry and Commerce <span class="muted">2016–2017</span></li>
+    <h2>ECLAC Office in Argentina</h2>
+    <ul class="rows wide">
+      <li><span class="when">2021–present</span><div><span class="title">Tools for Time Series Analysis with R</span><span class="meta">Course for public servants</span></div></li>
+      <li><span class="when">2024–2025</span><div><span class="title">Statistical Analysis of Administrative Data with R</span><span class="meta">Course for public servants</span></div></li>
     </ul>
 
-    <h2>Experience</h2>
-    <ul>
-      <li>Consultant, United Nations Economic Commission for Latin America and the Caribbean (ECLAC/CEPAL): macroeconomics, economic development and data science <span class="muted">2021–2025</span></li>
-      <li>Intern, ECLAC <span class="muted">2020</span></li>
-      <li>Research assistant (PROPAI and CIN grants) to Paulo Pascuini and Andrés López, on productive development, the satellite industry and innovation economics <span class="muted">2019–2021</span></li>
-    </ul>
-
-    <h2>Skills and languages</h2>
-    <ul>
-      <li>R (data analysis, visualization, modelling, econometrics, automated reports, Shiny apps), Excel, LaTeX</li>
-      <li>Spanish (native), English (fluent), German (fluent), Italian (basic)</li>
+    <h2>National University of San Martín</h2>
+    <ul class="rows wide">
+      <li><span class="when">2024–2025</span><div><span class="title">Introduction to Data Modelling</span><span class="meta">Diploma in Computational Social Science and Digital Humanities, IDAES School</span></div></li>
+      <li><span class="when">2024–present</span><div><span class="title">The product space, economic complexity and trade</span><span class="meta">Guest class, International Trade, Master’s in Economic Development, IDAES School</span></div></li>
     </ul>
   </section>
 
   <section id="contact">
-    <ul>
-      <li><a href="mailto:v.alvarez@student.unisi.it">v.alvarez@student.unisi.it</a></li>
-      <li>Department of Economics, University of Siena</li>
-    </ul>
-    <ul>
-      <li><a href="https://scholar.google.com/citations?user=vbTrJC0AAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://orcid.org/0000-0001-9816-6401">ORCID</a></li>
-      <li><a href="https://www.linkedin.com/in/valentin-alvarez-850583119/">LinkedIn</a></li>
-      <li><a href="https://x.com/valvarezmr">X</a></li>
-      <li><a href="https://github.com/valvarezmr">GitHub</a></li>
+    <ul class="contact">
+      <li><a href="mailto:v.alvarez@student.unisi.it">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1.6 2 8.4 6.3L20.4 6H3.6zM21 7.5l-9 6.75L3 7.5V18h18V7.5z"/></svg>
+        <span>v.alvarez@student.unisi.it</span></a></li>
+      <li><a href="https://scholar.google.com/citations?user=vbTrJC0AAAAJ&amp;hl=en">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+        <span>Google Scholar</span></a></li>
+      <li><a href="https://orcid.org/0000-0001-9816-6401">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+        <span>ORCID</span></a></li>
+      <li><a href="https://www.linkedin.com/in/valentin-alvarez-850583119/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span>LinkedIn</span></a></li>
+      <li><a href="https://x.com/valvarezmr">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+        <span>X</span></a></li>
+      <li><a href="https://github.com/valvarezmr">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <span>GitHub</span></a></li>
     </ul>
   </section>
 
 </div>
 <script>
   (function () {
-    var ids = ['about', 'research', 'teaching', 'cv', 'contact'];
     document.documentElement.className = 'js';
+
+    // One section at a time
+    var ids = ['about', 'research', 'teaching', 'contact'];
     function show() {
       var id = location.hash.slice(1);
       if (ids.indexOf(id) < 0) id = 'about';
@@ -237,6 +265,50 @@
     }
     window.addEventListener('hashchange', show);
     show();
+
+    // Publications: chronological or by topic
+    var box = document.getElementById('pubs');
+    var items = [].slice.call(box.querySelectorAll('li'));
+    var topics = [['macro', 'Macro and theory'], ['dev', 'Economic development']];
+    function list(rows) {
+      var ul = document.createElement('ul');
+      ul.className = 'rows';
+      var last = '';
+      rows.forEach(function (li) {
+        var when = li.querySelector('.when');
+        when.style.visibility = when.textContent === last ? 'hidden' : '';
+        last = when.textContent;
+        ul.appendChild(li);
+      });
+      return ul;
+    }
+    function render(mode) {
+      box.innerHTML = '';
+      if (mode === 'topic') {
+        topics.forEach(function (t, n) {
+          var h = document.createElement('h3');
+          h.textContent = t[1];
+          if (n === 0) h.style.marginTop = '0';
+          box.appendChild(h);
+          box.appendChild(list(items.filter(function (li) {
+            return li.getAttribute('data-topic') === t[0];
+          })));
+        });
+      } else {
+        box.appendChild(list(items));
+      }
+      var buttons = document.querySelectorAll('.order button');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].className = buttons[i].getAttribute('data-mode') === mode ? 'current' : '';
+      }
+    }
+    var buttons = document.querySelectorAll('.order button');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function () {
+        render(this.getAttribute('data-mode'));
+      });
+    }
+    render('chrono');
   })();
 </script>
 </body>
