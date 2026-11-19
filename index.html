@@ -120,11 +120,16 @@
       <div class="order">
         <button type="button" data-mode="chrono" class="current">Chronological</button>
         <button type="button" data-mode="topic">By topic</button>
+        <button type="button" data-mode="wp">Working papers</button>
       </div>
     </div>
 
     <div id="pubs">
     <ul class="rows">
+      <li data-topic="wp"><span class="when">2026</span><div>
+        <span class="title">Shock without therapy: A critical assessment of Argentina’s stabilization attempt under Milei</span>
+        <span class="meta">With J. M. Campana. Presented at the 30th conference of the <a href="https://www.boeckler.de/de/dokumentationen-2720-shaping-macroeconomics-in-times-of-global-transformation-30-years-of-fmm-74164.htm">Forum for Macroeconomics and Macroeconomic Policies (FMM)</a>, Berlin, October 2026.</span></div></li>
+
       <li data-topic="macro"><span class="when">2026</span><div>
         <a class="title" href="https://www.networkideas.org/wp-content/uploads/2026/10/IMF-LAC-MONITOR.pdf">IMF–LAC Monitor: IMF lending and conditionality in Latin America and the Caribbean</a>
         <span class="meta">With M. Abeles. IDEAs Report, International Development Economics Associates.</span></div></li>
@@ -302,8 +307,14 @@
             return li.getAttribute('data-topic') === t[0];
           })));
         });
+      } else if (mode === 'wp') {
+        box.appendChild(list(items.filter(function (li) {
+          return li.getAttribute('data-topic') === 'wp';
+        })));
       } else {
-        box.appendChild(list(items));
+        box.appendChild(list(items.filter(function (li) {
+          return li.getAttribute('data-topic') !== 'wp';
+        })));
       }
       var buttons = document.querySelectorAll('.order button');
       for (var i = 0; i < buttons.length; i++) {
